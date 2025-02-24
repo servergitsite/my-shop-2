@@ -1,0 +1,1 @@
+create table item(id integer primary key autoincrement, image_filename text not null, description text not null, price real not null);

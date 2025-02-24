@@ -1,0 +1,18 @@
+<html>
+<head><title>Add new item</title></head>
+<body>
+<h1>Add new item</h1>
+<form action="/items" enctype="multipart/form-data" method="post">
+  <label for="my_image">Choose an image:</label><br/>
+  <input type="file" name="my_file" id="my_file" /><br/><br/>
+
+  <label for="item_description">Item description:</label><br/>
+  <textarea name="item_description" id="item_description"></textarea><br/><br/>
+
+  <label for="price">Price:</label><br/>
+  $<input type="price" name="price" id="price" /><br/><br/>
+
+  <input type="submit" value="Add Item" />
+</form>
+</body>
+</html>

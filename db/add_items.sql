@@ -1,0 +1,1 @@
+insert into item (image_filename, description, price) values ('super_metroid.png', 'Super Metroid SNES game', 23.00);
