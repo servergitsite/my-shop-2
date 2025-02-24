@@ -11,7 +11,25 @@ app = Flask(__name__)
 
 @app.route('/latest_item')
 def latest_item():
-    data = {"description": "TODO", "price": 12.34}
+
+    # Connect to the database
+    print("\n\n-----------> connecting...")
+    db_path = "/Users/family/dev/noah_shop/my_shop.db"
+    conn = sqlite3.connect(db_path)
+    curr = conn.cursor()
+    # Execute the query
+    curr.execute('select image_filename, description, price from item')
+
+    # Fetch the first row
+    row = curr.fetchone()
+
+    # Print the row
+    print("\n\n\n------------------>")
+    image_filepath = row[0]
+    print(f"image_filepath: {image_filepath}")
+
+
+    data = {"image_filename": os.path.basename(row[0]), "description": row[1], "price": row[2]}
     return jsonify(data)
 
 
@@ -24,13 +42,13 @@ def my_shop(name=None):
 @app.route('/my_shop_2/')
 @app.route('/my_shop_2/<name>')
 def my_shop_2(name=None):
-    return render_template('my_shop_dynamic.html', name=name)
+    return render_template('my_shop_2.html', name=name)
 
 
 @app.route('/items', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
-        img_upload_dir = "/Users/family/dev/noah_shop/static"
+        img_upload_dir = "/Users/family/dev/noah_shop/my-shop-2/static"
         f = request.files['my_file']
 
         if f:

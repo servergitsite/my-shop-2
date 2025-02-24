@@ -1,9 +1,11 @@
 <html>
   <head>
-    <title>Simple Page with API Call</title>
+    <title>View Item</title>
   </head>
   <body>
     <h1 id="description"></h1>
+    <h2 id="price"></h2>
+    <img id="item_image"></img>
 
     <script>
       // Fetch the item description from the API
@@ -12,6 +14,8 @@
         .then(data => {
           // Display the description within the H1 tags
           document.getElementById('description').innerHTML = data.description;
+          document.getElementById('price').innerHTML = data.price;
+          document.getElementById('item_image').src = "/static/" + data.image_filename;
         })
         .catch(error => {
           console.error('Error fetching the item description:', error);
