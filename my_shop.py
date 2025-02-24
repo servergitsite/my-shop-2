@@ -44,12 +44,13 @@ def upload_file():
         f.save(image_filename)
 
 
-        # TODO: insert item into DB
         # TODO: Create the DB connection at app startup
 
         # Connect to the database
-        conn = sqlite3.connect('my_shop.db')
-        cur = conn.cursor()
+        print("\n\n-----------> connecting...")
+        db_path = "/Users/family/dev/noah_shop/my_shop.db"
+        conn = sqlite3.connect(db_path)
+        curr = conn.cursor()
 
         # Prepare the SQL query
         sql_query = '''
@@ -62,7 +63,7 @@ def upload_file():
 
         try:
             new_row = (image_filename, description, float(price))
-            cur.execute(sql_query, new_row)
+            curr.execute(sql_query, new_row)
             conn.commit()
         except ValueError:
             print(f"Price not valid: {price}")
